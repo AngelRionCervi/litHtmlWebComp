@@ -19,6 +19,7 @@ const addMoreCars = (cars) => {
 store.setGlobal("addMoreCars", addMoreCars);
 const gState = store.getGlobalState();
 
+// probably a good idea to pass a ref to the comp itself (_this)
 createComp("test-test", ({ createState, html, query, onAttached, onRemove, useGlobal, _this }) => {
     const { state, setState } = createState({ cars: useGlobal("cars") });
 
@@ -45,7 +46,7 @@ createComp("test-test", ({ createState, html, query, onAttached, onRemove, useGl
     return () => html`
         <div id="some_id">some div</div>
         <p @click=${click}>Hello ${Object.keys(state.cars).map((brand) => html`<p>${brand}</p>`)}</p>
-        <test-2 .props=${{ sayIt: () => console.log("lol") }}></test-2>
+        <test-2 .props=${{ sayIt: () => console.log("i said it") }}></test-2>
     `;
 });
 
